@@ -121,12 +121,22 @@ try {
                 class="icon"
               />
               <h3>Education</h3>
-              <p>GPA-5 in HSC <br /> From Sahid A.H.M Kamaruzzaman Degree College,Rajshahi <br /> GPA-5 in SSC <br />From Agrani School and College,Rajshahi</p>
+              <p>
+                GPA-5 in HSC <br />
+                From Sahid A.H.M Kamaruzzaman Degree College,Rajshahi <br />
+                GPA-5 in SSC <br />From Agrani School and College,Rajshahi
+              </p>
             </div>
           </div>
           <div class="text-container">
             <p>
-              Hello,My name is Maruf Shafiq.I am a passionate and dedicated frontend developer with a strong foundation in HTML, CSS, and JavaScript. I love creating visually appealing and user-friendly websites that provide an excellent user experience. I am constantly learning and staying updated with the latest web development trends and technologies to enhance my skills and deliver high-quality projects.
+              Hello,My name is Maruf Shafiq.I am a passionate and dedicated
+              frontend developer with a strong foundation in HTML, CSS, and
+              JavaScript. I love creating visually appealing and user-friendly
+              websites that provide an excellent user experience. I am
+              constantly learning and staying updated with the latest web
+              development trends and technologies to enhance my skills and
+              deliver high-quality projects.
             </p>
           </div>
         </div>
@@ -326,7 +336,80 @@ try {
                 </button>
               </div>
             </div>
+<<<<<<<< HEAD:index.php
           <?php endforeach; ?>
+========
+            <h2 class="experience-sub-title project-title">
+              ONSER- Household Management System`
+            </h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-2.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              Hall Management System
+            </h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              Database Management System Project
+            </h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+>>>>>>>> 050fae9a9c5f6ee28d274de3d2d45c9f50036d96:index.html
         </div>
       </div>
       <?php if (empty($projects)): ?>
@@ -343,6 +426,7 @@ try {
     <section id="contact">
       <p class="section__text__p1">Get in Touch</p>
       <h1 class="title">Contact Me</h1>
+<<<<<<<< HEAD:index.php
       <div class="contact-info-upper-container">
         <div class="contact-info-container">
           <img
@@ -361,7 +445,21 @@ try {
           <p><a href="https://www.linkedin.com">LinkedIn</a></p>
         </div>
       </div>
+========
+      <h2 style="text-align:center; margin-bottom:1rem;">Send Me a Message</h2>
+      <form action="contact.php" method="POST" id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+>>>>>>>> 050fae9a9c5f6ee28d274de3d2d45c9f50036d96:index.html
     </section>
+    <button id="theme-toggle" style="margin-left: 1rem">🌙</button>
     <footer>
       <nav>
         <div class="nav-links-container">
@@ -375,6 +473,7 @@ try {
       </nav>
       <p>Copyright &#169; 2025 Maruf Shafiq. All Rights Reserved.</p>
     </footer>
+    
     <script src="script.js"></script>
   </body>
 </html>
