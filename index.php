@@ -1,3 +1,18 @@
+<?php
+require_once 'config/db.php';
+require_once 'includes/ProjectManager.php';
+
+try {
+    if (!isset($conn)) {
+        throw new Exception("Database connection failed");
+    }
+    $projectManager = new ProjectManager($conn);
+    $projects = $projectManager->getAllProjects();
+} catch (Exception $e) {
+    error_log("Error: " . $e->getMessage());
+    $projects = [];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +31,7 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="login.php">Admin</a></li>
         </ul>
       </div>
     </nav>
@@ -32,13 +48,14 @@
           <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
           <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
           <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          <li><a href="login.php" onclick="toggleMenu()">Admin</a></li>
         </div>
       </div>
     </nav>
 
     <section id="profile">
       <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="profile picture" />
+        <img src="./assets/profile-pic.jpg" alt="profile picture" />
       </div>
       <div class="section__text">
         <p class="section__text__p1">Hello, I'm</p>
@@ -71,13 +88,14 @@
         </div>
       </div>
     </section>
+
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
       <div class="section-container">
         <div class="section__pic-container">
           <img
-            src="./assets/about-pic.png"
+            src="./assets/about-pic.jpg"
             alt="Profile picture"
             class="about-pic"
           />
@@ -105,7 +123,6 @@
               <h3>Education</h3>
               <p>GPA-5 in HSC <br /> From Sahid A.H.M Kamaruzzaman Degree College,Rajshahi <br /> GPA-5 in SSC <br />From Agrani School and College,Rajshahi</p>
             </div>
-            
           </div>
           <div class="text-container">
             <p>
@@ -278,85 +295,43 @@
         onclick="location.href='./#projects'"
       />
     </section>
+
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
       <div class="experience-details-container">
         <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Project 1"
-                class="project-img"
-              />
+          <?php foreach ($projects as $project): ?>
+            <div class="details-container color-container">
+              <div class="article-container">
+                <img
+                  src="<?php echo htmlspecialchars($project['image']); ?>"
+                  alt="<?php echo htmlspecialchars($project['title']); ?>"
+                  class="project-img"
+                />
+              </div>
+              <h2 class="experience-sub-title project-title"><?php echo htmlspecialchars($project['title']); ?></h2>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2 project-btn"
+                  onclick="location.href='<?php echo htmlspecialchars($project['github_link']); ?>'"
+                >
+                  Github
+                </button>
+                <button
+                  class="btn btn-color-2 project-btn"
+                  onclick="location.href='<?php echo htmlspecialchars($project['demo_link']); ?>'"
+                >
+                  Live Demo
+                </button>
+              </div>
             </div>
-            <h2 class="experience-sub-title project-title">ONSER- Household Management System`</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Hall Management System</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Database Management System Project </h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
+      <?php if (empty($projects)): ?>
+        <p class="no-projects">No projects available yet.</p>
+      <?php endif; ?>
       <img
         src="./assets/arrow.png"
         alt="Arrow icon"
@@ -364,6 +339,7 @@
         onclick="location.href='./#contact'"
       />
     </section>
+
     <section id="contact">
       <p class="section__text__p1">Get in Touch</p>
       <h1 class="title">Contact Me</h1>
@@ -374,7 +350,7 @@
             alt="Email icon"
             class="icon contact-icon email-icon"
           />
-          <p><a href="mailto:examplemail@gmail.com">marufshafiq2002@gmail.com</a></p>
+          <p><a href="mailto:marufshafiq2002@gmail.com">marufshafiq2002@gmail.com</a></p>
         </div>
         <div class="contact-info-container">
           <img
